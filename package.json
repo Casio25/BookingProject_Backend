@@ -2,8 +2,9 @@
   "name": "bookingproject_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./js/main.js",
   "scripts": {
+    "start": "babel js --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,10 @@
   "homepage": "https://github.com/Casio25/BookingProject_Backend#readme",
   "dependencies": {
     "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2"
   }
 }

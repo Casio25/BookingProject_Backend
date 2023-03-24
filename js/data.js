@@ -1,11 +1,24 @@
 import * as variables from "./variables.js";
 import * as func from "./util.js"
+import { priceList } from "../dist/variables.js";
 
 
 export function getOffer() {
+    function priceRanger(price) {
+        let range = ""
+        if (price < 10000){
+            range = "low";
+        }else if (price > 10000 && price < 20000){
+            range = "middle";
+        }else if (price > 20000){
+            range = "high"
+        }
+        return range;
+    }
     const shuffledFeatures = func.shuffle(variables.features);
     const getRandomX = func.RandomFloatNumber(variables.locationXValues.MIN, variables.locationXValues.MAX);
     const getRandomY = func.RandomFloatNumber(variables.locationYValues.MIN, variables.locationYValues.MAX);
+    const getPrice = func.RandomNaturalNumber(variables.priceList.MIN, variables.priceList.MAX);
     return {
         author: {
             avatar: `img/avatars/user0${func.RandomNaturalNumber(variables.numberOfAvatars.MIN, variables.numberOfAvatars.MAX)}.png`
@@ -16,7 +29,8 @@ export function getOffer() {
                 locationX: getRandomX,
                 locationY: getRandomY
             },
-            price: func.RandomNaturalNumber(variables.priceList.MIN, variables.priceList.MAX),
+            price: getPrice,
+            priceRange: priceRanger(getPrice),
             type: variables.typeArray[func.RandomNaturalNumber(0, variables.typeArray.length)],
             rooms: variables.numberOfRooms[func.RandomNaturalNumber(0, variables.numberOfRooms.length)],
             guests: func.RandomNaturalNumber(variables.numberOfGuests.MIN, variables.numberOfGuests.MAX),

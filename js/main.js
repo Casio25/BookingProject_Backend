@@ -1,7 +1,10 @@
 import { offers } from "./variables.js";
-const fs = require("fs");
 const http = require("http");
+const fs = require("fs");
 fs.writeFileSync("data.txt", JSON.stringify(offers));
+
+/*All fucntion and constants*/
+
 
 http.createServer((req, res) =>{
     res.setHeader("Access-Control-Allow-Origin", "*");
